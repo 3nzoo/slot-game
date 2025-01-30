@@ -1,5 +1,4 @@
 //! call winning popup component
-//! machine component
 //! switch component
 
 import { FancyButton } from '@pixi/ui';
@@ -10,6 +9,9 @@ import { Container } from 'pixi.js';
 
 import { engine } from '../../getEngine';
 import { PausePopup } from '../../popups/PausePopup';
+import { SlotBoard } from '../../ui/slotBoard';
+import { SpinButton } from '../../ui/SpinButton';
+SpinButton;
 
 /** The screen that holds the app */
 export class MainScreen extends Container {
@@ -18,6 +20,9 @@ export class MainScreen extends Container {
 
   public mainContainer: Container;
   private pauseButton: FancyButton;
+  private machineBase: SlotBoard;
+  private spinButton: FancyButton;
+  private spinDisabled: FancyButton;
   private paused = false;
 
   constructor() {
@@ -40,6 +45,7 @@ export class MainScreen extends Container {
         duration: 100,
       },
     };
+
     this.pauseButton = new FancyButton({
       defaultView: 'icon-pause.png',
       anchor: 0.5,
@@ -50,19 +56,31 @@ export class MainScreen extends Container {
     );
     this.addChild(this.pauseButton);
 
-    //? how to show a component
-    // this.settingsButton.onPress.connect(() =>
-    //   engine().navigation.presentPopup(SettingsPopup),
-    // );
-    // this.addChild(this.settingsButton);
+    this.machineBase = new SlotBoard({ width: 700, height: 500 });
+    this.mainContainer.addChild(this.machineBase);
 
-    // this.removeButton = new Button({
-    //   text: 'Remove',
-    //   width: 175,
-    //   height: 110,
-    // });
-    // this.removeButton.onPress.connect(() => this.bouncer.remove());
-    // this.addChild(this.removeButton);
+    this.spinDisabled = new SpinButton({
+      width: 419,
+    });
+    this.spinDisabled.interactive = false;
+    this.spinDisabled.defaultView = 'spin-disable.png';
+    this.addChild(this.spinDisabled);
+
+    this.spinButton = new SpinButton({
+      width: 419,
+    });
+
+    this.spinButton.onPress.connect(() => {
+      this.spinButton.visible = false;
+      this.spinDisabled.visible = true;
+      this.pauseButton.interactive = false;
+      setTimeout(() => {
+        this.spinButton.visible = true;
+        this.spinDisabled.visible = false;
+        this.pauseButton.interactive = true;
+      }, 5000);
+    });
+    this.addChild(this.spinButton);
   }
 
   /** Prepare the screen just before showing */
@@ -94,7 +112,10 @@ export class MainScreen extends Container {
   public resize(width: number, height: number) {
     const centerX = width * 0.5;
     const centerY = height * 0.5;
-
+    this.spinButton.x = centerX;
+    this.spinButton.y = centerY * 1.6;
+    this.spinDisabled.x = centerX;
+    this.spinDisabled.y = centerY * 1.6;
     this.mainContainer.x = centerX;
     this.mainContainer.y = centerY;
     this.pauseButton.x = 30;

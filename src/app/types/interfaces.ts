@@ -13,3 +13,7 @@ export interface Tween {
   complete: Function | null;
   start: Date | number;
 }
+
+export type SlotBoardOptions = object;
+
+export type SpinButtonOptions = object;

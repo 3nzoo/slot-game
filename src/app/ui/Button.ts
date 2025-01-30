@@ -1,11 +1,11 @@
-import { FancyButton } from "@pixi/ui";
+import { FancyButton } from '@pixi/ui';
 
-import { engine } from "../getEngine";
+import { engine } from '../getEngine';
 
-import { Label } from "./Label";
+import { Label } from './Label';
 
 const defaultButtonOptions = {
-  text: "",
+  text: '',
   width: 301,
   height: 112,
   fontSize: 28,
@@ -21,14 +21,14 @@ export class Button extends FancyButton {
     const opts = { ...defaultButtonOptions, ...options };
 
     super({
-      defaultView: "button.png",
+      defaultView: 'button.png',
       nineSliceSprite: [38, 50, 38, 50],
       anchor: 0.5,
       text: new Label({
         text: opts.text,
         style: {
           fill: 0x4a4a4a,
-          align: "center",
+          align: 'center',
           fontSize: opts.fontSize,
         },
       }),
@@ -61,10 +61,10 @@ export class Button extends FancyButton {
   }
 
   private handleHover() {
-    engine().audio.sfx.play("main/sounds/sfx-hover.wav");
+    engine().audio.sfx.play('main/sounds/sfx-hover.wav');
   }
 
   private handleDown() {
-    engine().audio.sfx.play("main/sounds/sfx-press.wav");
+    engine().audio.sfx.play('main/sounds/sfx-press.wav');
   }
 }
