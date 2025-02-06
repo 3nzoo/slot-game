@@ -68,12 +68,12 @@
         },
         {
           "alias": [
-            "main/sounds/win.mp3",
-            "win.mp3"
+            "main/sounds/sfx-win.mp3",
+            "sfx-win.mp3"
           ],
           "src": [
-            "main/sounds/win.ogg",
-            "main/sounds/win.mp3"
+            "main/sounds/sfx-win.ogg",
+            "main/sounds/sfx-win.mp3"
           ],
           "data": {
             "tags": {

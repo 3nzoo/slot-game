@@ -4,6 +4,7 @@ import { backout, lerp } from '../../engine/utils/maths';
 import { col } from '../constants';
 import { engine } from '../getEngine';
 import { WinPopup } from '../popups/WinPopup';
+import { CongratsPopup } from '../popups/CongratsPopup';
 
 const defaultReelOptions = {
   width: 225,
@@ -174,17 +175,29 @@ export class ReelsComponent extends Container {
   public reelsComplete(randomIndexes: number[]) {
     this.running = false;
     console.log('COMPLETE', randomIndexes);
+
     if (this.getResult(randomIndexes) === 1) {
       console.log('777 WINNNERRR!!');
-      engine().navigation.presentPopup(WinPopup);
+      setTimeout(() => {
+        engine().audio.sfx.play('main/sounds/sfx-win.mp3');
+        engine().navigation.presentPopup(WinPopup);
+      }, 3500);
+
       setTimeout(() => {
         engine().navigation.dismissPopup();
-      }, 6000);
+      }, 9500);
     } else if (
       this.getResult(randomIndexes) != undefined &&
       this.getResult(randomIndexes) < 11
     ) {
-      console.log('Congrats POPUP');
+      console.log('Congrats You won');
+      setTimeout(() => {
+        engine().audio.sfx.play('main/sounds/sfx-win.mp3');
+        engine().navigation.presentPopup(CongratsPopup);
+      }, 3500);
+      setTimeout(() => {
+        engine().navigation.dismissPopup();
+      }, 6000);
     } else {
       console.log('NO LUCK');
     }

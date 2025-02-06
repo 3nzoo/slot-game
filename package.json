@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run dev",
     "build": "tsc && vite build",
-    "dev": "vite"
+    "dev": "vite",
+    "build-and-serve": "vite build && http-server dist"
   },
   "dependencies": {
     "@esotericsoftware/spine-pixi-v8": "^4.2.66",
