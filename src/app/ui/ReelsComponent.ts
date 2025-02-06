@@ -197,7 +197,7 @@ export class ReelsComponent extends Container {
       }, 3500);
       setTimeout(() => {
         engine().navigation.dismissPopup();
-      }, 6000);
+      }, 9500);
     } else {
       console.log('NO LUCK');
     }
