@@ -16,8 +16,8 @@ export type ReelOptions = typeof defaultReelOptions;
 export class ReelsComponent extends Container {
   /** The rectangular area, that scales without distorting rounded corners */
   private slotTextures = [
-    Texture.from('01.png'),
     Texture.from('02.png'),
+    Texture.from('01.png'),
     Texture.from('03.png'),
     Texture.from('04.png'),
     Texture.from('05.png'),
@@ -176,7 +176,7 @@ export class ReelsComponent extends Container {
     this.running = false;
     console.log('COMPLETE', randomIndexes);
 
-    if (this.getResult(randomIndexes) === 1) {
+    if (this.getResult(randomIndexes) === 2) {
       console.log('777 WINNNERRR!!');
       setTimeout(() => {
         engine().audio.sfx.play('main/sounds/sfx-win.mp3');
