@@ -27,8 +27,8 @@ export function tweenTo(
     target: target,
     easing: easing,
     time: time,
-    change: onchange,
-    complete: oncomplete,
+    onchange: onchange,
+    oncomplete: oncomplete,
     start: Date.now(),
   };
 

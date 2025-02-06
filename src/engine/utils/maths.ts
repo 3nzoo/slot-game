@@ -7,11 +7,17 @@ export function getDistance(ax: number, ay: number, bx = 0, by = 0) {
 
 /** Linear interpolation */
 export function lerp(a: number, b: number, t: number) {
-  return (1 - t) * a + t * b;
+  return a * (1 - t) + b * t;
 }
 
 /** Clamp a number to minimum and maximum values */
 export function clamp(v: number, min = 0, max = 1) {
   if (min > max) [min, max] = [max, min];
   return v < min ? min : v > max ? max : v;
+}
+
+// Backout function from tweenjs.
+// https://github.com/CreateJS/TweenJS/blob/master/src/tweenjs/Ease.js
+export function backout(amount: number) {
+  return (t: number) => --t * t * ((amount + 1) * t + amount) + 1;
 }

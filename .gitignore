@@ -25,4 +25,4 @@ dist-ssr
 
 public/assets
 .assetpack
-src/manifest.json
+# src/manifest.json

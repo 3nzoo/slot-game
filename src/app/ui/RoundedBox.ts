@@ -14,7 +14,6 @@ export type RoundedBoxOptions = typeof defaultRoundedBoxOptions;
 /**
  * Generic rounded box based on a nine-sliced sprite that can be resized freely.
  */
-//? component for paused game
 export class RoundedBox extends Container {
   /** The rectangular area, that scales without distorting rounded corners */
   private image: NineSliceSprite;

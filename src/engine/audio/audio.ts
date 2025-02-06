@@ -1,6 +1,6 @@
-import type { PlayOptions, Sound } from "@pixi/sound";
-import { sound } from "@pixi/sound";
-import { animate } from "motion";
+import type { PlayOptions, Sound } from '@pixi/sound';
+import { sound } from '@pixi/sound';
+import { animate } from 'motion';
 
 /**
  * Handles music background, playing only one audio file in loop at time,
@@ -23,10 +23,10 @@ export class BGM {
     // Fade out then stop current music
     if (this.current) {
       const current = this.current;
-      animate(current, { volume: 0 }, { duration: 1, ease: "linear" }).then(
+      animate(current, { volume: 0 }, { duration: 1, ease: 'linear' }).then(
         () => {
           current.stop();
-        },
+        }
       );
     }
 
@@ -40,7 +40,7 @@ export class BGM {
     animate(
       this.current,
       { volume: this.volume },
-      { duration: 1, ease: "linear" },
+      { duration: 1, ease: 'linear' }
     );
   }
 

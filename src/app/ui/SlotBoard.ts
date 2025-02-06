@@ -8,12 +8,13 @@ const defaultSlotBoardOptions = {
 };
 
 export class SlotBoard extends Container {
-  /** The rectangular area, that scales without distorting rounded corners */
   private image: NineSliceSprite;
 
   constructor(options: Partial<SlotBoardOptions> = {}) {
     super();
     const opts = { ...defaultSlotBoardOptions, ...options };
+
+    //? Slot Machine background
     this.image = new NineSliceSprite({
       texture: Texture.from('slotMachine.png'),
       width: opts.width,

@@ -1,20 +1,20 @@
-import { sound } from "@pixi/sound";
+import { sound } from '@pixi/sound';
 import type {
   ApplicationOptions,
   DestroyOptions,
   RendererDestroyOptions,
-} from "pixi.js";
-import { Application, Assets, extensions, ResizePlugin } from "pixi.js";
-import "pixi.js/app";
+} from 'pixi.js';
+import { Application, Assets, extensions, ResizePlugin } from 'pixi.js';
+import 'pixi.js/app';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore - This is a dynamically generated file by AssetPack
-import manifest from "../manifest.json";
+import manifest from '../manifest.json';
 
-import { CreationAudioPlugin } from "./audio/AudioPlugin";
-import { CreationNavigationPlugin } from "./navigation/NavigationPlugin";
-import { CreationResizePlugin } from "./resize/ResizePlugin";
-import { getResolution } from "./utils/getResolution";
+import { CreationAudioPlugin } from './audio/AudioPlugin';
+import { CreationNavigationPlugin } from './navigation/NavigationPlugin';
+import { CreationResizePlugin } from './resize/ResizePlugin';
+import { getResolution } from './utils/getResolution';
 
 extensions.remove(ResizePlugin);
 extensions.add(CreationResizePlugin);
@@ -42,25 +42,26 @@ export class CreationEngine extends Application {
     await super.init(opts);
 
     // Append the application canvas to the document body
-    document.getElementById("pixi-container")!.appendChild(this.canvas);
+    document.getElementById('pixi-container')!.appendChild(this.canvas);
     // Add a visibility listener, so the app can pause sounds and screens
-    document.addEventListener("visibilitychange", this.visibilityChange);
+    document.addEventListener('visibilitychange', this.visibilityChange);
 
     // Init PixiJS assets with this asset manifest
-    await Assets.init({ manifest, basePath: "assets" });
-    await Assets.loadBundle("preload");
+    await Assets.init({ manifest, basePath: 'assets' });
+    await Assets.loadBundle('preload');
 
     // List all existing bundles names
     const allBundles = manifest.bundles.map((item) => item.name);
+
     // Start up background loading of all bundles
     Assets.backgroundLoadBundle(allBundles);
   }
 
   public override destroy(
     rendererDestroyOptions: RendererDestroyOptions = false,
-    options: DestroyOptions = false,
+    options: DestroyOptions = false
   ): void {
-    document.removeEventListener("visibilitychange", this.visibilityChange);
+    document.removeEventListener('visibilitychange', this.visibilityChange);
     super.destroy(rendererDestroyOptions, options);
   }
 
